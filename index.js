@@ -3,13 +3,22 @@ var stormpath = require('express-stormpath')
 var app = express()
  
 app.use(stormpath.init(app, {
-  expand: {
-    customData: true,
-  },
-  web: {
-    produces: ['application/json']
-  }
+  application:process.env.STORMPATH_URL,
+
+  // expand: {
+  //   customData: true,
+  // },
+  // web: {
+  //   produces: ['application/json']
+  // }
 }))
+
+// GET 
+app.get('/', stormpath.apiAuthenticationRequired, function(req, res) {
+  res.send("Hey there!")
+})
+
+
 
 // GET note API call
 app.get('/notes', stormpath.apiAuthenticationRequired, function(req, res) {
