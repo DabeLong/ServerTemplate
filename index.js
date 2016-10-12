@@ -34,4 +34,4 @@ app.post('/notes', stormpath.apiAuthenticationRequired, function(req, res) {
 }) 
 
 
-app.listen(3000) // port number
+app.listen(process.env.PORT || 3000) // port number
